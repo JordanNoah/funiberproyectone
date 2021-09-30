@@ -1,0 +1,157 @@
+{
+    "Room":{
+        "AppBar":{
+            "Title":"Multipurpose room manager",
+            "MenuAvatar":{
+                "DarkMode":"Dark Mode",
+                "Languajes":"Languajes",
+                "Disconnect":"Disconnect"
+            }
+        },
+        "Manager":{
+            "SearchBar":{
+                "Label":"Search"
+            },
+            "NewRoom":"New room",
+            "Table":{
+                "HeaderOne":"Program",
+                "HeaderTwo":"Scheduled date",
+                "HeaderThree":"Scheduled time",
+                "HeaderFour":"Student",
+                "HeaderFive":"Moderator",
+                "HeaderSix":"Participants",
+                "HeaderSeven":"Status",
+                "HeaderEight":"Actions",
+                "StatusRow":{
+                    "Negative":"Not comfirmed",
+                    "Positive":"Comfirmed"
+                },
+                "ActionButton":{
+                    "Edit":"Edit",
+                    "Remove":"Remove",
+                    "Link":"Go to room"
+                },
+                "UnExistedMod":"There is no moderator",
+                "ExpandedLabels":{
+                    "InscriptionId":"Inscription ID",
+                    "DefenseData":{
+                        "Label":"Defense data",
+                        "Date":"Date",
+                        "Time":"Time",
+                        "ExpositionTime":"Exhibithion time",
+                        "NumberParticipants":"Amount of participants"
+                    },
+                    "StudentData":{
+                        "Label":"Student data",
+                        "StudentName":"Student name",
+                        "Email":"Mail",
+                        "Id":"ID",
+                        "Program":"Program"
+                    },
+                    "Participants":{
+                        "LabelPlural":"Participants",
+                        "LabelSingular":"Participant",
+                        "Rol":"Role",
+                        "NameOf":"Name of",
+                        "EmailOf":"Mail of"
+                    }
+                }
+            },
+            "RemoveDialog":{
+                "Title":"Are you sure you want to delete this room?",
+                "SubTitle":"The room will be removed, this action is immovable",
+                "ActionButtons":{
+                    "CloseButton":"Close",
+                    "ConfirmButton":"Accept"
+                }
+            },
+            "ChangeStatusDialog":{
+                "Title":"Are you sure you want to confirm the room?",
+                "SubTitle":"The confirmation of this room will entail sending an email to the participants, moderators and student",
+                "ActionButtons":{
+                    "CloseButton":"Close",
+                    "ConfirmButton":"Accept"
+                }
+            },
+            "SnackBar":{
+                "Label":"Message sended"
+            }
+        },
+        "RoomAction":{
+            "DialogTitleSave":"Save multipurpose room",
+            "DialogTitleEdit":"Edit multipurpose room",
+            "InscriptionId":"Inscription ID",
+            "RolSelect":{
+                "FirstItem":"Moderator",
+                "SecondItem":"Visitor",
+                "ThirdItem":"Delegate"
+            },
+            "RoomStatus":{
+                "Positive":"Confirmed",
+                "Negative":"Not comfirmed"
+            },
+            "DefenseData":{
+                "Label":"Defense data",
+                "Date":"Date",
+                "Time":"Time",
+                "ExpositionTime":"Exhibithion time",
+                "NumberParticipants":"Amount of participants"
+            },
+            "StudentData":{
+                "Label":"Student data",
+                "Id":"ID",
+                "Program":"Program code",
+                "Email":"Mail",
+                "StudentName":"Full name"
+            },
+            "Participants":{
+                "Label":"Participants",
+                "SingularLabel":"Participant",
+                "AddButton":"New participant",
+                "Rol":{
+                    "Label":"Role",
+                    "ItemOne":"Moderator",
+                    "ItemTwo":"Visitant",
+                    "ItemThree":"Delegate"
+                },
+                "NameOf":"Name of",
+                "EmailOf":"Mail of"
+            },
+            "ActionButtons":{
+                "CleanData":"Clean data",
+                "CheckData":"Save data"
+            },
+            "Errors":{
+                "Name":"Name is requiered",
+                "IdInscription":"Inscription is requiered",
+                "Date":"Date is requiered",
+                "Time":"Time is requiered",
+                "Email":{
+                    "Required":"E-mail is required",
+                    "Format":"E-mail must be valid"
+                },
+                "Id":"Id is required",
+                "Code":"Code is required",
+                "Rol":"Role is required"
+            },
+            "Dialog":{
+                "SendData":"Send data",
+                "Cancel":"Close"
+            },
+            "WaitText":"Please stand by"
+        }
+    },
+    "Login":{
+        "Label":"Login",
+        "User":"User",
+        "Password":"Password",
+        "ActionButton":"Log in"
+    },
+    "404":{
+        "Message":"Sorry, the page you are looking for was not found ...",
+        "RouteLink":"Go back"
+    },
+    "Maintenance":{
+        "Message":"Sorry, the page is currently under maintenance ..."
+    }
+}

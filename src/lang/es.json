@@ -1,0 +1,159 @@
+{
+    "Room":{
+        "AppBar":{
+            "Title":"Gestor de salas polivalentes",
+            "MenuAvatar":{
+                "DarkMode":"Modo obscuro",
+                "Languajes":"Idiomas",
+                "Disconnect":"Desconectar"
+            }
+        },
+        "Manager":{
+            "SearchBar":{
+                "Label":"Buscar"
+            },
+            "NewRoom":"Nueva sala",
+            "Table":{
+                "HeaderOne":"Programa",
+                "HeaderTwo":"Fecha programada",
+                "HeaderThree":"Hora programada",
+                "HeaderFour":"Estudiante",
+                "HeaderFive":"Moderador",
+                "HeaderSix":"Participantes",
+                "HeaderSeven":"Estado",
+                "HeaderEight":"Acciones",
+                "StatusRow":{
+                    "Negative":"Sin confirmar",
+                    "Positive":"Confirmado"
+                },
+                "ActionButton":{
+                    "Edit":"Editar",
+                    "Remove":"Remover",
+                    "Link":"Ir a la sala"
+                },
+                "UnExistedMod":"No existe moderador",
+                "ExpandedLabels":{
+                    "InscriptionId":"Inscripción ID",
+                    "DefenseData":{
+                        "Label":"Datos de la defensa",
+                        "Date":"Fecha",
+                        "Time":"Hora",
+                        "ExpositionTime":"Tiempo de exposición",
+                        "NumberParticipants":"Cantidad de participantes"
+                    },
+                    "StudentData":{
+                        "Label":"Datos del Estudiante",
+                        "StudentName":"Nombre del estudiante",
+                        "Email":"Correo",
+                        "Id":"ID",
+                        "Program":"Programa"
+                    },
+                    "Participants":{
+                        "LabelPlural":"Participantes",
+                        "LabelSingular":"Participante",
+                        "Rol":"Rol",
+                        "NameOf":"Nombre del",
+                        "EmailOf":"Correo del"
+                    }
+                }
+            },
+            "RemoveDialog":{
+                "Title":"¿Seguro desea eliminar esta sala?",
+                "SubTitle":"La sala sera removida, esta accion es inamovible",
+                "ActionButtons":{
+                    "CloseButton":"Cerrar",
+                    "ConfirmButton":"Aceptar"
+                }
+            },
+            "ChangeStatusDialog":{
+                "Title":"¿Seguro desea confirmar la sala?",
+                "SubTitle":"La confirmacion de esta sala conllevara enviar un email a los participantes, moderadores y estudiante",
+                "ActionButtons":{
+                    "CloseButton":"Cerrar",
+                    "ConfirmButton":"Aceptar"
+                }
+            },
+            "SnackBar":{
+                "Label":"Message sended"
+            }
+        },
+        "RoomAction":{
+            "DialogTitleSave":"Guardar sala polivalente",
+            "DialogTitleEdit":"Editar sala polivalente",
+            "InscriptionId":"Inscripción ID",
+            "RolSelect":{
+                "FirstItem":"Moderador",
+                "SecondItem":"Visitante",
+                "ThirdItem":"Delegado"
+            },
+            "RoomStatus":{
+                "Positive":"Confirmado",
+                "Negative":"Sin confirmar"
+            },
+            "DefenseData":{
+                "Label":"Datos de la defensa",
+                "Date":"Fecha",
+                "ErrorDate":"",
+                "Time":"Hora",
+                "ErrorTime":"",
+                "ExpositionTime":"Tiempo de exposición",
+                "NumberParticipants":"Cantidad de participantes"
+            },
+            "StudentData":{
+                "Label":"Datos del Estudiante",
+                "Id":"ID",
+                "Program":"Codigo de programa",
+                "Email":"Correo",
+                "StudentName":"Nombre completo"
+            },
+            "Participants":{
+                "Label":"Participantes",
+                "SingularLabel":"Participante",
+                "AddButton":"Añadir participante",
+                "Rol":{
+                    "Label":"Rol",
+                    "ItemOne":"Moderador",
+                    "ItemTwo":"Visitante",
+                    "ItemThree":"Delegado"
+                },
+                "NameOf":"Nombre del",
+                "EmailOf":"Correo del"
+            },
+            "ActionButtons":{
+                "CleanData":"Limpiar",
+                "CheckData":"Guardar"
+            },
+            "Errors":{
+                "Name":"El nombre es obligatiorio",
+                "IdInscription":"Inscipción id es obligatiorio",
+                "Date":"Fecha es obligatioria",
+                "Time":"Hora es obligatiorio",
+                "Email":{
+                    "Required":"E-mail es obligatiorio",
+                    "Format":"Formato incorrecto"
+                },
+                "Id":"Id es obligatiorio",
+                "Code":"Codigo es obligatiorio",
+                "Rol":"Rol es obligatiorio"
+            },
+            "Dialog":{
+                "SendData":"Enviar datos",
+                "Cancel":"Cerrar"
+            },
+            "WaitText":"Por favor espere"
+        }
+    },
+    "Login":{
+        "Label":"Acceso",
+        "User":"Usuario",
+        "Password":"Contraseña",
+        "ActionButton":"Acceder"
+    },
+    "404":{
+        "Message":"Lo sentimos, la página que estas buscando no fue encontrada ...",
+        "RouteLink":"Volver al inicio"
+    },
+    "Maintenance":{
+        "Message":"Lo sentimos, la página se encuentra actualmente en mantenimiento ..."
+    }
+}
