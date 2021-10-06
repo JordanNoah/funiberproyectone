@@ -84,7 +84,8 @@
             "RolSelect":{
                 "FirstItem":"Moderator",
                 "SecondItem":"Visitor",
-                "ThirdItem":"Delegate"
+                "ThirdItem":"Delegate",
+                "ErrorItem":"Role don't exist"
             },
             "RoomStatus":{
                 "Positive":"Confirmed",

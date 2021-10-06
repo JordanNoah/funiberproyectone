@@ -67,14 +67,14 @@
             },
             "ChangeStatusDialog":{
                 "Title":"¿Seguro desea confirmar la sala?",
-                "SubTitle":"La confirmacion de esta sala conllevara enviar un email a los participantes, moderadores y estudiante",
+                "SubTitle":"La confirmacion de esta sala enviara un email a los participantes, moderadores y estudiante",
                 "ActionButtons":{
                     "CloseButton":"Cerrar",
                     "ConfirmButton":"Aceptar"
                 }
             },
             "SnackBar":{
-                "Label":"Message sended"
+                "Label":"Mensaje enviado"
             }
         },
         "RoomAction":{
@@ -84,7 +84,8 @@
             "RolSelect":{
                 "FirstItem":"Moderador",
                 "SecondItem":"Visitante",
-                "ThirdItem":"Delegado"
+                "ThirdItem":"Delegado",
+                "ErrorItem":"Role don't exist"
             },
             "RoomStatus":{
                 "Positive":"Confirmado",

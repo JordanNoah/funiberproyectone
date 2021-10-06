@@ -1,8 +1,7 @@
 <template>
   <v-container fluid class="pa-0">
     <v-app-bar app hide-on-scroll color="primary">
-      <!-- <v-btn small icon v-if="$route.name != 'Manager'" @click="$router.back()"><v-icon small>fas fa-chevron-left</v-icon></v-btn> -->
-      <v-img :src="require(`@/assets/prueba/logo.png`)" max-height="40" max-width="40" contain @click="$router.push({name:'Room'}).catch({})"></v-img>
+      <v-img :src="require(`@/assets/prueba/logo.png`)" max-height="40" max-width="40" contain @click="goTo()"></v-img>
       <v-spacer></v-spacer>
       <v-toolbar-title>
         <span class="titleAppBar">
@@ -110,6 +109,9 @@ export default {
       }else{
         return 'dark'
       }
+    },
+    goTo(){
+      this.$route.name != "Manager" ? this.$router.push({name:'Room'}) : null
     }
   }
 };

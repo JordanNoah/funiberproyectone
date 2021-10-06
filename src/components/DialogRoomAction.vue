@@ -95,22 +95,22 @@
                                 </strong>
                                 <span class="text-caption">
                                     <span v-if="isNew()">
-                                        {{auditorium.multipurpose_room_configuration.creator_users_id}}
+                                        {{auditorium.sustainer.inscription_reference_id}}
                                     </span>
                                     <span v-else>
                                         <span v-if="existChange('StudentInscriptionId')">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{on,attrs}">
                                                     <span class="green--text" v-bind="attrs" v-on="on">
-                                                        {{auditorium.multipurpose_room_configuration.creator_users_id}}
+                                                        {{auditorium.sustainer.inscription_reference_id}}
                                                     </span>
                                                 </template>
-                                                <span><span class="green--text">{{auditorium.multipurpose_room_configuration.creator_users_id}}</span> /
-                                                    <span class="red--text">{{oldAuditorium.multipurpose_room_configuration.creator_users_id}}</span></span>
+                                                <span><span class="green--text">{{auditorium.sustainer.inscription_reference_id}}</span> /
+                                                    <span class="red--text">{{oldAuditorium.sustainer.inscription_reference_id}}</span></span>
                                             </v-tooltip>
                                         </span>
                                         <span v-else>
-                                            <span>{{auditorium.multipurpose_room_configuration.creator_users_id}}</span>
+                                            <span>{{auditorium.sustainer.inscription_reference_id}}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -156,22 +156,22 @@
                                 </strong>
                                 <span class="text-caption">
                                     <span v-if="isNew()" class="green--text">
-                                        {{auditorium.multipurpose_room_configuration.scheduled_date}}
+                                        {{auditorium.params.scheduled_date}}
                                     </span>
                                     <span v-else>
-                                        <span v-if="auditorium.multipurpose_room_configuration.scheduled_date != oldAuditorium.multipurpose_room_configuration.scheduled_date">
+                                        <span v-if="auditorium.params.scheduled_date != oldAuditorium.params.scheduled_date">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{on,attrs}">
                                                     <span class="green--text" v-bind="attrs" v-on="on">
-                                                        {{auditorium.multipurpose_room_configuration.scheduled_date}}
+                                                        {{auditorium.params.scheduled_date}}
                                                     </span>
                                                 </template>
-                                                <span><span class="green--text">{{auditorium.multipurpose_room_configuration.scheduled_date}}</span> /
-                                                    <span class="red--text">{{oldAuditorium.multipurpose_room_configuration.scheduled_date}}</span></span>
+                                                <span><span class="green--text">{{auditorium.params.scheduled_date}}</span> /
+                                                    <span class="red--text">{{oldAuditorium.params.scheduled_date}}</span></span>
                                             </v-tooltip>
                                         </span>
                                         <span v-else>
-                                            <span>{{auditorium.multipurpose_room_configuration.scheduled_date}}</span>
+                                            <span>{{auditorium.params.scheduled_date}}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -182,22 +182,22 @@
                                 </strong>
                                 <span class="text-caption">
                                     <span v-if="isNew()" class="green--text">
-                                        {{auditorium.multipurpose_room_configuration.scheduled_time}}
+                                        {{auditorium.params.scheduled_time}}
                                     </span>
                                     <span v-else>
-                                        <span v-if="auditorium.multipurpose_room_configuration.scheduled_time != oldAuditorium.multipurpose_room_configuration.scheduled_time">
+                                        <span v-if="auditorium.params.scheduled_time != oldAuditorium.params.scheduled_time">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{on,attrs}">
                                                     <span class="green--text" v-bind="attrs" v-on="on">
-                                                        {{auditorium.multipurpose_room_configuration.scheduled_time}}
+                                                        {{auditorium.params.scheduled_time}}
                                                     </span>
                                                 </template>
-                                                <span><span class="green--text">{{auditorium.multipurpose_room_configuration.scheduled_time}}</span> /
-                                                    <span class="red--text">{{oldAuditorium.multipurpose_room_configuration.scheduled_time}}</span></span>
+                                                <span><span class="green--text">{{auditorium.params.scheduled_time}}</span> /
+                                                    <span class="red--text">{{oldAuditorium.params.scheduled_time}}</span></span>
                                             </v-tooltip>
                                         </span>
                                         <span v-else>
-                                            <span>{{auditorium.multipurpose_room_configuration.scheduled_time}}</span>
+                                            <span>{{auditorium.params.scheduled_time}}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -208,22 +208,22 @@
                                 </strong>
                                 <span class="text-caption">
                                     <span v-if="isNew()" class="green--text">
-                                        {{auditorium.multipurpose_room_configuration.duration_time}}
+                                        {{auditorium.params.duration_time}}
                                     </span>
                                     <span v-else>
-                                        <span v-if="auditorium.multipurpose_room_configuration.duration_time != oldAuditorium.multipurpose_room_configuration.duration_time">
+                                        <span v-if="auditorium.params.duration_time != oldAuditorium.params.duration_time">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{on,attrs}">
                                                     <span class="green--text" v-bind="attrs" v-on="on">
-                                                        {{auditorium.multipurpose_room_configuration.duration_time}}
+                                                        {{auditorium.params.duration_time}}
                                                     </span>
                                                 </template>
-                                                <span><span class="green--text">{{auditorium.multipurpose_room_configuration.duration_time}}</span> /
-                                                    <span class="red--text">{{oldAuditorium.multipurpose_room_configuration.duration_time}}</span></span>
+                                                <span><span class="green--text">{{auditorium.params.duration_time}}</span> /
+                                                    <span class="red--text">{{oldAuditorium.params.duration_time}}</span></span>
                                             </v-tooltip>
                                         </span>
                                         <span v-else>
-                                            <span>{{auditorium.multipurpose_room_configuration.duration_time}}</span>
+                                            <span>{{auditorium.params.duration_time}}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -234,22 +234,22 @@
                                 </strong>
                                 <span class="text-caption">
                                     <span v-if="isNew()" class="green--text">
-                                        {{auditorium.multipurpose_room_configuration.capacity}}
+                                        {{auditorium.params.capacity}}
                                     </span>
                                     <span v-else>
-                                        <span v-if="auditorium.multipurpose_room_configuration.capacity != oldAuditorium.multipurpose_room_configuration.capacity">
+                                        <span v-if="auditorium.params.capacity != oldAuditorium.params.capacity">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{on,attrs}">
                                                     <span class="green--text" v-bind="attrs" v-on="on">
-                                                        {{auditorium.multipurpose_room_configuration.capacity}}
+                                                        {{auditorium.params.capacity}}
                                                     </span>
                                                 </template>
-                                                <span><span class="green--text">{{auditorium.multipurpose_room_configuration.capacity}}</span> /
-                                                    <span class="red--text">{{oldAuditorium.multipurpose_room_configuration.capacity}}</span></span>
+                                                <span><span class="green--text">{{auditorium.params.capacity}}</span> /
+                                                    <span class="red--text">{{oldAuditorium.params.capacity}}</span></span>
                                             </v-tooltip>
                                         </span>
                                         <span v-else>
-                                            <span>{{auditorium.multipurpose_room_configuration.capacity}}</span>
+                                            <span>{{auditorium.params.capacity}}</span>
                                         </span>
                                     </span>
                                 </span>
@@ -266,8 +266,8 @@
                         </strong>
                     </v-card-title>
                     <v-card-text class="d-flex flex-wrap">
-                        <div outlined v-for="(delegate) in auditorium.delegates" :key="delegate.uniqId">
-                            <div outlined v-for="(oldDelegate,index) in oldAuditorium.delegates" :key="index">
+                        <div outlined v-for="(delegate) in auditorium.delegations" :key="delegate.uniqId">
+                            <div outlined v-for="(oldDelegate,index) in oldAuditorium.delegations" :key="index">
                                 <v-card v-if="delegate.uniqId == oldDelegate.uniqId" outlined class="ma-2 formStyle">
                                     <v-container>
                                         <p class="mb-0"> <strong
@@ -275,28 +275,28 @@
                                             </strong>
                                             <span class="text-caption">
                                                 <span
-                                                    v-if="delegate.role_abbreviation != oldDelegate.role_abbreviation">
+                                                    v-if="delegate.role != oldDelegate.role">
                                                     <v-tooltip bottom>
                                                         <template v-slot:activator="{on,attrs}">
                                                             <span class="green--text text-decoration-underline"
                                                                 v-bind="attrs" v-on="on">
-                                                                {{returnRol(delegate.role_abbreviation)}}
+                                                                {{returnRol(delegate.role)}}
                                                             </span>
                                                         </template>
                                                         <span><span
-                                                                class="green--text">{{returnRol(delegate.role_abbreviation)}}</span>
+                                                                class="green--text">{{returnRol(delegate.role)}}</span>
                                                             / <span
-                                                                class="red--text">{{returnRol(oldDelegate.role_abbreviation)}}</span></span>
+                                                                class="red--text">{{returnRol(oldDelegate.role)}}</span></span>
                                                     </v-tooltip>
                                                 </span>
                                                 <span v-else>
-                                                    {{returnRol(delegate.role_abbreviation)}}
+                                                    {{returnRol(delegate.role)}}
                                                 </span>
                                             </span>
                                         </p>
                                         <p class="mb-0"> <strong
                                                 class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.NameOf')}}
-                                                {{returnRol(delegate.role_abbreviation)}}: </strong>
+                                                {{returnRol(delegate.role)}}: </strong>
                                             <span class="text-caption">
                                                 <span v-if="delegate.fullname != oldDelegate.fullname">
                                                     <v-tooltip bottom>
@@ -317,7 +317,7 @@
                                             </span></p>
                                         <p class="mb-0"> <strong
                                                 class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.EmailOf')}}
-                                                {{returnRol(delegate.role_abbreviation)}}: </strong>
+                                                {{returnRol(delegate.role)}}: </strong>
                                             <span class="text-caption">
                                                 <span v-if="delegate.email != oldDelegate.email">
                                                     <v-tooltip bottom>
@@ -342,32 +342,32 @@
                                 <v-container>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.Rol')}}:</strong>
-                                        <span class="text-caption">{{returnRol(delegate.role_abbreviation)}}</span></p>
+                                        <span class="text-caption">{{returnRol(delegate.role)}}</span></p>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.NameOf')}}
-                                            {{returnRol(delegate.role_abbreviation)}}:</strong>
+                                            {{returnRol(delegate.role)}}:</strong>
                                         <span class="text-caption">{{delegate.fullname}}</span></p>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.EmailOf')}}
-                                            {{returnRol(delegate.role_abbreviation)}}:</strong>
+                                            {{returnRol(delegate.role)}}:</strong>
                                         <span class="text-caption">{{delegate.email}}</span></p>
                                 </v-container>
                             </v-card>
                         </div>
-                        <div v-for="(oldDelegate,index) in oldAuditorium.delegates" :key="index">
+                        <div v-for="(oldDelegate,index) in oldAuditorium.delegations" :key="index">
                             <v-card outlined v-if="!checkRemoved(oldDelegate)" class="ma-2" color="error">
                                 <v-container>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.Rol')}}:</strong>
-                                        <span class="text-caption">{{returnRol(oldDelegate.role_abbreviation)}}</span>
+                                        <span class="text-caption">{{returnRol(oldDelegate.role)}}</span>
                                     </p>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.NameOf')}}
-                                            {{returnRol(oldDelegate.role_abbreviation)}}:</strong>
+                                            {{returnRol(oldDelegate.role)}}:</strong>
                                         <span class="text-caption">{{oldDelegate.fullname}}</span></p>
                                     <p class="mb-0"> <strong
                                             class="text-subtitle-2">{{$t('Room.Manager.Table.ExpandedLabels.Participants.EmailOf')}}
-                                            {{returnRol(oldDelegate.role_abbreviation)}}:</strong>
+                                            {{returnRol(oldDelegate.role)}}:</strong>
                                         <span class="text-caption">{{oldDelegate.email}}</span></p>
                                 </v-container>
                                 <!-- removido {{oldDelegate}} -->
@@ -392,7 +392,7 @@ export default {
             require:true
         },
         idItem:{
-            type:Number,
+            type:String,
             require:true
         }
     },
@@ -416,27 +416,27 @@ export default {
             }else if(value == 'StudentCodeReference'){
                 if(this.auditorium.sustainer.code_reference != this.oldAuditorium.sustainer.code_reference){return true;}else{return false;}
             }else if(value == 'StudentInscriptionId'){
-                if(this.auditorium.multipurpose_room_configuration.creator_users_id != this.oldAuditorium.multipurpose_room_configuration.creator_users_id){return true;}else{return false}
+                if(this.auditorium.sustainer.inscription_reference_id != this.oldAuditorium.sustainer.inscription_reference_id){return true;}else{return false}
             }else if(value == 'StudentProgram_abbreviation'){
                 if(this.auditorium.sustainer.program_abbreviation != this.oldAuditorium.sustainer.program_abbreviation){return true;}else{return false;}
             }
         },
         returnRol(value){
-            if(value == 'mod'){
+            if(value == 'MOD'){
                 return this.$t('Room.RoomAction.Participants.Rol.ItemOne')
-            }else if(value == 'vis'){
+            }else if(value == 'VIS'){
                 return this.$t('Room.RoomAction.Participants.Rol.ItemTwo')
-            }else if(value == 'del'){
+            }else if(value == 'DEL'){
                 return this.$t('Room.RoomAction.Participants.Rol.ItemThree')
             }
         },
         checkRemoved(value){
             // this.auditorium.find(x => x.uniqId === value.uniqId)
-            return this.auditorium.delegates.find(x => x.uniqId == value.uniqId);
+            return this.auditorium.delegations.find(x => x.uniqId == value.uniqId);
         },
         checkNew(value){
             if(Object.keys(this.oldAuditorium).length!=0){
-                return this.oldAuditorium.delegates.find(x => x.uniqId == value.uniqId)
+                return this.oldAuditorium.delegations.find(x => x.uniqId == value.uniqId)
             }else{
                 return false;
             }
