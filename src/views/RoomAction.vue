@@ -46,7 +46,7 @@
                           :label="$t('Room.RoomAction.DefenseData.Time')" prepend-inner-icon="far fa-clock" readonly
                           v-bind="attrs" v-on="on" outlined clearable :rules="rules.time" required></v-text-field>
                       </template>
-                      <v-time-picker v-if="modal3" v-model="auditorium.params.scheduled_time" full-width format="ampm">
+                      <v-time-picker v-if="modal3" v-model="auditorium.params.scheduled_time" full-width format="24hr">
                         <v-spacer></v-spacer>
                         <v-btn text color="primary" @click="modal3 = false">
                           Cancel
@@ -227,7 +227,7 @@
         <DialogRoomAction :idItem="id" :oldAuditorium="oldAuditorium" :auditorium="auditorium" style="heigth:100px;" />
       </v-card>
     </v-dialog>
-    <v-dialog v-model="dialogWatingData" overlay-opacity="0.95" persistent width="300">
+    <v-dialog v-model="dialogWatingData" overlay-opacity="0.95" width="300">
       <v-card>
         <v-card-text>
           {{$t('Room.RoomAction.WaitText')}}
@@ -242,197 +242,234 @@
 import DialogRoomAction from '../components/DialogRoomAction.vue'
 export default {
   data: () => ({
-      date: null,
-      modal: false,
-      time: null,
-      modal2: false,
-      modal3: false,
-      auditorium: {
-        params: {
-          capacity: null,
-          confirmation: null,
-          duration_time: null,
-          id: null,
-          scheduled_date: null,
-          scheduled_time: null,
-          url: null,
-          uuid: null,
-        },
-        delegations: [{
-          uniqId: null,
-          fullname: null,
-          email: null,
-          id: null,
-          role: null
-        }],
-        sustainer: {
-          code_reference: null,
-          email: null,
-          fullname: null,
-          program_abbreviation: null,
-          inscription_reference_id: null
-        }
+    date: null,
+    modal: false,
+    time: null,
+    modal2: false,
+    modal3: false,
+    auditorium: {
+      params: {
+        capacity: null,
+        confirmation: null,
+        duration_time: null,
+        id: null,
+        scheduled_date: null,
+        scheduled_time: null,
+        url: null,
+        uuid: null,
       },
-      oldAuditorium: {},
-      RolSelect: [],
-      validParticipant: true,
-      validInscripcion: true,
-      validDataDef: true,
-      validStudent: true,
-      id: null,
-      dialogSendData: false,
-      dialogWatingData: false,
-      rules: {},
-      skeletonPetition: false
-    }),
-    components: {
-      DialogRoomAction,
-      RoomActionSkeleton: () => import("../components/RoomActionSkeleton.vue")
-    },
-    created: function () {
-      this.id = this.$route.params.id != undefined ? this.$route.params.id : null
-      if (this.id != null) {
-        this.skeletonPetition = true
-        this.$axios.get(`/rooms/${this.id}`).then((res) => {
-          if (res.status == 200) {
-            console.log(res.data)
-            this.createArrayAuditorium(res.data)
-          }
-        }).catch((e) => console.log(e)).finally(()=>{
-          this.skeletonPetition = false
-        })
+      delegations: [{
+        uniqId: null,
+        fullname: null,
+        email: null,
+        id: null,
+        role: null
+      }],
+      sustainer: {
+        code_reference: null,
+        email: null,
+        fullname: null,
+        program_abbreviation: null,
+        inscription_reference_id: null
       }
+    },
+    oldAuditorium: {},
+    RolSelect: [],
+    validParticipant: true,
+    validInscripcion: true,
+    validDataDef: true,
+    validStudent: true,
+    id: null,
+    dialogSendData: false,
+    dialogWatingData: false,
+    rules: {},
+    skeletonPetition: false
+  }),
+  components: {
+    DialogRoomAction,
+    RoomActionSkeleton: () => import("../components/RoomActionSkeleton.vue")
+  },
+  created: function () {
+    this.id = this.$route.params.id != undefined ? this.$route.params.id : null
+    if (this.id != null) {
+      this.skeletonPetition = true
+      this.$axios.get(`/rooms/${this.id}`).then((res) => {
+        if (res.status == 200) {
+          this.createArrayAuditorium(res.data)
+        }
+      }).catch((e) => console.log(e)).finally(() => {
+        this.skeletonPetition = false
+      })
+    }
+    this.updateParticipantSelect()
+    this.updateRules()
+  },
+  computed: {
+    checkerLanguaje() {
+      return this.$i18n.locale
+    }
+  },
+  watch: {
+    checkerLanguaje() {
+      for (let index = 0; index < this.auditorium.delegations.length; index++) {
+        this.$refs.participantForm[index].resetValidation()
+      }
+      this.$refs.formDataDef.resetValidation()
+      this.$refs.formStudent.resetValidation()
       this.updateParticipantSelect()
       this.updateRules()
     },
-    computed: {
-      checkerLanguaje() {
-        return this.$i18n.locale
+  },
+  methods: {
+    createArrayAuditorium(arrayPure) {
+      // here we took the array and asign all to our form
+      // we do this cuz we need to add a uniq id to oir delegates so 
+      // the comparations at send works perfect
+      var delegates = []
+      arrayPure.delegations.forEach(element => {
+        const newParticipantOgj = {
+          uniqId: Math.floor(Math.random() * 100) + Date.now(),
+          fullname: element.fullname,
+          email: element.email,
+          role: element.role,
+          id: element.id
+        };
+        delegates.push(newParticipantOgj)
+      });
+      var minToHour = Math.floor(arrayPure.params.duration_time / 60) + ":" + (arrayPure.params.duration_time % 60)
+      arrayPure.params.duration_time = minToHour
+      console.log(arrayPure)
+      var arrayWorked = {
+        params: arrayPure.params,
+        delegations: delegates,
+        sustainer: arrayPure.sustainer
+      };
+      this.auditorium = JSON.parse(JSON.stringify(arrayWorked))
+      this.oldAuditorium = JSON.parse(JSON.stringify(arrayWorked))
+    },
+    updateRules() {
+      this.rules = {
+        name: [v => !!v || this.$t('Room.RoomAction.Errors.Name')],
+        idInscription: [v => !!v || this.$t('Room.RoomAction.Errors.IdInscription')],
+        date: [v => !!v || this.$t('Room.RoomAction.Errors.Date')],
+        time: [v => !!v || this.$t('Room.RoomAction.Errors.Time')],
+        email: [
+          v => !!v || this.$t('Room.RoomAction.Errors.Email.Required'),
+          v => /.+@.+\..+/.test(v) || this.$t('Room.RoomAction.Errors.Email.Format')
+        ],
+        id: [v => !!v || this.$t('Room.RoomAction.Errors.Id')],
+        code: [v => !!v || this.$t('Room.RoomAction.Errors.Code')],
+        rol: [v => !!v || this.$t('Room.RoomAction.Errors.Rol')]
       }
     },
-    watch: {
-      checkerLanguaje() {
-        for (let index = 0; index < this.auditorium.delegations.length; index++) {
-          this.$refs.participantForm[index].resetValidation()
+    updateParticipantSelect() {
+      this.RolSelect = [{
+          text: this.$t('Room.RoomAction.Participants.Rol.ItemOne'),
+          abbr: 'MOD'
+        },
+        {
+          text: this.$t('Room.RoomAction.Participants.Rol.ItemTwo'),
+          abbr: 'VIS'
+        },
+        {
+          text: this.$t('Room.RoomAction.Participants.Rol.ItemThree'),
+          abbr: 'DEL'
         }
-        this.$refs.formDataDef.resetValidation()
-        this.$refs.formStudent.resetValidation()
-        this.updateParticipantSelect()
-        this.updateRules()
-      },
+      ]
     },
-    methods: {
-      createArrayAuditorium(arrayPure){
-        // here we took the array and asign all to our form
-        // we do this cuz we need to add a uniq id to oir delegates so 
-        // the comparations at send works perfect
-        var delegates = []
-        arrayPure.delegations.forEach(element => {
-          const newParticipantOgj = {
-            uniqId: Math.floor(Math.random() * 100) + Date.now(),
-            fullname: element.fullname,
-            email: element.email,
-            role: element.role,
-            id: element.id
-          };
-          delegates.push(newParticipantOgj)
-        });
-        var arrayWorked = {params: arrayPure.params,delegations:delegates,sustainer:arrayPure.sustainer};
-        this.auditorium = JSON.parse(JSON.stringify(arrayWorked))
-        this.oldAuditorium = JSON.parse(JSON.stringify(arrayWorked))
-      },
-      updateRules() {
-        this.rules = {
-          name: [v => !!v || this.$t('Room.RoomAction.Errors.Name')],
-          idInscription: [v => !!v || this.$t('Room.RoomAction.Errors.IdInscription')],
-          date: [v => !!v || this.$t('Room.RoomAction.Errors.Date')],
-          time: [v => !!v || this.$t('Room.RoomAction.Errors.Time')],
-          email: [
-            v => !!v || this.$t('Room.RoomAction.Errors.Email.Required'),
-            v => /.+@.+\..+/.test(v) || this.$t('Room.RoomAction.Errors.Email.Format')
-          ],
-          id: [v => !!v || this.$t('Room.RoomAction.Errors.Id')],
-          code: [v => !!v || this.$t('Room.RoomAction.Errors.Code')],
-          rol: [v => !!v || this.$t('Room.RoomAction.Errors.Rol')]
+    getParticipantRol(value) {
+      if (value.role == 'MOD') {
+        return this.$t('Room.RoomAction.RolSelect.FirstItem')
+      } else if (value.role == 'VIS') {
+        return this.$t('Room.RoomAction.RolSelect.SecondItem')
+      } else if (value.role == 'DEL') {
+        return this.$t('Room.RoomAction.RolSelect.ThirdItem')
+      }
+    },
+    addParticipant() {
+      var emptyElement = false;
+      for (let index = 0; index < this.auditorium.delegations.length; index++) {
+        if (!this.$refs.participantForm[index].validate()) {
+          emptyElement = true;
         }
-      },
-      updateParticipantSelect() {
-        this.RolSelect = [{
-            text: this.$t('Room.RoomAction.Participants.Rol.ItemOne'),
-            abbr: 'MOD'
-          },
-          {
-            text: this.$t('Room.RoomAction.Participants.Rol.ItemTwo'),
-            abbr: 'VIS'
-          },
-          {
-            text: this.$t('Room.RoomAction.Participants.Rol.ItemThree'),
-            abbr: 'DEL'
-          }
-        ]
-      },
-      getParticipantRol(value) {
-        if (value.role == 'MOD') {
-          return this.$t('Room.RoomAction.RolSelect.FirstItem')
-        } else if (value.role == 'VIS') {
-          return this.$t('Room.RoomAction.RolSelect.SecondItem')
-        } else if (value.role == 'DEL') {
-          return this.$t('Room.RoomAction.RolSelect.ThirdItem')
-        }
-      },
-      addParticipant() {
-        var emptyElement = false;
-        for (let index = 0; index < this.auditorium.delegations.length; index++) {
-          if (!this.$refs.participantForm[index].validate()) {
-            emptyElement = true;
-          }
-        }
-        if (!emptyElement) {
-          const newParticipantOgj = {
-            uniqId: Math.floor(Math.random() * 100) + Date.now(),
-            fullname: '',
-            email: '',
-            role: ''
-          };
-          this.auditorium.delegations.unshift(newParticipantOgj)
-        }
-      },
-      removeParticipant(index) {
-        if (this.auditorium.delegations.length < 2) {
-          this.auditorium.delegations = [{}]
-        } else {
-          this.auditorium.delegations.splice(index, 1)
-        }
-      },
-      checkingData() {
-        var emptyElement = false;
-        for (let index = 0; index < this.auditorium.delegations.length; index++) {
-          if (!this.$refs.participantForm[index].validate()) {
-            emptyElement = true;
-          }
-        }
-        this.$refs.formDataDef.validate()
-        this.$refs.formStudent.validate()
-        if (this.$refs.formDataDef.validate() && this.$refs.formStudent.validate() && !emptyElement) {
-          this.dialogSendData = true
-        }
-      },
-      sendingData() {
-        this.dialogSendData = false
-        this.dialogWatingData = true
-        setTimeout(() => {
-          this.dialogWatingData = false, this.$router.push({
-            name: 'Manager'
-          })
-        }, 2000);
-      },
-      cleanAll() {
+      }
+      if (!emptyElement) {
+        const newParticipantOgj = {
+          uniqId: Math.floor(Math.random() * 100) + Date.now(),
+          fullname: '',
+          email: '',
+          role: ''
+        };
+        this.auditorium.delegations.unshift(newParticipantOgj)
+      }
+    },
+    removeParticipant(index) {
+      if (this.auditorium.delegations.length < 2) {
         this.auditorium.delegations = [{}]
-        this.$refs.formDataDef.reset()
-        this.$refs.formStudent.reset()
+      } else {
+        this.auditorium.delegations.splice(index, 1)
       }
+    },
+    checkingData() {
+      var emptyElement = false;
+      for (let index = 0; index < this.auditorium.delegations.length; index++) {
+        if (!this.$refs.participantForm[index].validate()) {
+          emptyElement = true;
+        }
+      }
+      this.$refs.formDataDef.validate()
+      this.$refs.formStudent.validate()
+      if (this.$refs.formDataDef.validate() && this.$refs.formStudent.validate() && !emptyElement) {
+        this.dialogSendData = true
+      }
+    },
+    sendingData() {
+      this.dialogSendData = false
+      this.dialogWatingData = true
+      var uuid = this.auditorium.params.uuid
+      var sendData = JSON.parse(JSON.stringify(this.auditorium))
+      sendData.params.duration_time = (parseInt(sendData.params.duration_time.split(":")[0] * 60) + parseInt(sendData.params.duration_time.split(":")[1])).toString()
+      sendData.sustainer.code_reference = parseInt(sendData.sustainer.code_reference)
+      sendData.sustainer.inscription_reference_id = parseInt(sendData.sustainer.inscription_reference_id)
+      if (uuid != null) {
+        this.$axios.put(`/rooms/update/${uuid}`, sendData).then((res) => {
+          if (res.status == 200 && res.data == 'updated') {
+            this.dialogWatingData = false
+            this.$router.push({
+              name: 'Manager'
+            })
+          } else {
+            this.dialogSendData = true
+          }
+        }).catch((e) => {
+          console.log(e)
+        }).finally(() => {
+          this.dialogWatingData = false
+        })
+      } else {
+        sendData.params.confirmation = false
+        console.log(sendData)
+        this.$axios.post(`/rooms`, sendData).then((res) => {
+          if(res.status == 201){
+            this.dialogWatingData = false
+            this.$router.push({
+              name: 'Manager'
+            })
+          }
+        }).catch((e) => {
+          console.log(e)
+        }).finally(() => {
+          console.log("finally created")
+        })
+      }
+    },
+    cleanAll() {
+      this.auditorium.delegations = [{}]
+      this.$refs.formDataDef.reset()
+      this.$refs.formStudent.reset()
     }
   }
+}
 </script>
 
 <style>
